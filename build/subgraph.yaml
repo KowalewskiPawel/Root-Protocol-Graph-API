@@ -1,6 +1,6 @@
 specVersion: 0.0.4
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: undefined
@@ -23,7 +23,7 @@ dataSources:
         - Transfer
       abis:
         - name: Root
-          file: ./abis/Root.json
+          file: undefined/abis/Root.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,indexed uint256)
           handler: handleApproval
@@ -39,4 +39,4 @@ dataSources:
           handler: handleProfileNFTMinted
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/root.ts
+      file: undefined/undefined.wasm

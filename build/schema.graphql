@@ -1,0 +1,56 @@
+type Approval @entity {
+  id: ID!
+  owner: Bytes! # address
+  approved: Bytes! # address
+  tokenId: BigInt! # uint256
+}
+
+type ApprovalForAll @entity {
+  id: ID!
+  owner: Bytes! # address
+  operator: Bytes! # address
+  approved: Boolean! # bool
+}
+
+type CommentAdded @entity {
+  id: ID!
+  commentAdded_content: String! # string
+  commentAdded_authorId: BigInt! # uint256
+  commentAdded_date: BigInt! # uint256
+  postId: String! # string
+}
+
+type PostAdded @entity {
+  id: ID!
+  postAdded_title: String! # string
+  postAdded_content: String! # string
+  postAdded_picture: String! # string
+  postAdded_video: String! # string
+  postAdded_authorId: BigInt! # uint256
+  postAdded_date: BigInt! # uint256
+}
+
+type ProfileFollowed @entity {
+  id: ID!
+  follower: BigInt! # uint256
+  followed: BigInt! # uint256
+  profile_followers: [ProfileNFTMinted!]!
+}
+
+type ProfileNFTMinted @entity {
+  id: ID!
+  sender: Bytes! # address
+  profileId: BigInt! # uint256
+  memberData_username: String! # string
+  memberData_profilePicture: String! # string
+  memberData_followers: BigInt! # uint256
+  memberData_posts: BigInt! # uint256
+  followers_array: [ProfileFollowed!]! @derivedFrom(field: "profile_followers")
+}
+
+type Transfer @entity {
+  id: ID!
+  from: Bytes! # address
+  to: Bytes! # address
+  tokenId: BigInt! # uint256
+}
