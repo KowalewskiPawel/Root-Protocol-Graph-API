@@ -1,0 +1,41 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: undefined
+    network: mumbai
+    source:
+      address: "0x63843A042477e25c4f2087A1DD29d911Da0cd353"
+      abi: Root
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - CommentAdded
+        - PostAdded
+        - ProfileFollowed
+        - ProfileNFTMinted
+        - Transfer
+      abis:
+        - name: Root
+          file: ./abis/Root.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: CommentAdded((string,uint256,uint256),string)
+          handler: handleCommentAdded
+        - event: PostAdded((string,string,string,string,uint256,uint256))
+          handler: handlePostAdded
+        - event: ProfileFollowed(uint256,uint256)
+          handler: handleProfileFollowed
+        - event: ProfileNFTMinted(address,uint256,(string,string,uint256,uint256))
+          handler: handleProfileNFTMinted
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: ./src/root.ts
